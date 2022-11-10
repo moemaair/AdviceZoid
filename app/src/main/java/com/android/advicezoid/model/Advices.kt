@@ -1,4 +1,4 @@
-package com.android.advicezoid
+package com.android.advicezoid.model
 
 import com.google.gson.annotations.SerializedName
 

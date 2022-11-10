@@ -1,9 +1,10 @@
-package com.android.advicezoid
+package com.android.advicezoid.viewmodel
 
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModel
+import com.android.advicezoid.model.AdviceApi
+import com.android.advicezoid.model.Advices
 import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,7 +19,6 @@ class AdviceViewModel: ViewModel() {
         runBlocking {
             withContext(Dispatchers.IO) {
                 launch {
-                    delay(5000L)
                     runBlocking {
                         val users = AdviceApi.getInstance().getAdvice()
                         users.enqueue(object : Callback<Advices> {

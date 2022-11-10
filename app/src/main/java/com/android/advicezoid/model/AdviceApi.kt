@@ -1,4 +1,4 @@
-package com.android.advicezoid
+package com.android.advicezoid.model
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
