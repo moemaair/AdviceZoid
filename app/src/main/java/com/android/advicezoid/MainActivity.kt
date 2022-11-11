@@ -40,9 +40,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AdvicezoidTheme {
-                // A surface container using the 'background' color from the theme
-
-                //if (isSystemInDarkTheme()) window.navigationBarColor = 0xFF00000 else 0xFF03DAC5
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
@@ -74,14 +71,14 @@ fun AdviceOnscreen(state: MutableState<Advices>) {
    Box(modifier = Modifier.fillMaxSize()){
        Image(painter = painterResource(id = R.drawable.bg_cities),
            contentDescription = "app background",
-           modifier = Modifier.fillMaxSize().blur(2.dp),
+           modifier = Modifier
+               .fillMaxSize()
+               .blur(2.dp),
            contentScale = ContentScale.Crop)
 
        Column(modifier = Modifier.fillMaxSize(),
            verticalArrangement = Arrangement.Center,
            horizontalAlignment = Alignment.CenterHorizontally,
-
-
            ) {
            Card(modifier = Modifier
                .size(400.dp)
@@ -110,7 +107,12 @@ fun AdviceOnscreen(state: MutableState<Advices>) {
                        Image(painter = painterResource(id = R.drawable.quote_vector), contentDescription = "top quote icon")
                    }
                }
+
+               //copy and share card
+
            }
+           AdviceUtil()
+
 
        }
    }
@@ -118,11 +120,10 @@ fun AdviceOnscreen(state: MutableState<Advices>) {
 }
 
 
-
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     AdvicezoidTheme {
-        AdviceList(viewModel = AdviceViewModel())
+
     }
 }
