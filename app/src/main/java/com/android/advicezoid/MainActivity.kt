@@ -1,11 +1,13 @@
 package com.android.advicezoid
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -22,6 +24,7 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Black
+import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -29,6 +32,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.android.advicezoid.model.Advices
 import com.android.advicezoid.ui.theme.AdvicezoidTheme
 import com.android.advicezoid.viewmodel.AdviceViewModel
@@ -68,6 +72,7 @@ fun AdviceList(viewModel: AdviceViewModel) {
 @Composable
 
 fun AdviceOnscreen(state: MutableState<Advices>) {
+    val context = LocalContext.current
    Box(modifier = Modifier.fillMaxSize()){
        Image(painter = painterResource(id = R.drawable.bg_cities),
            contentDescription = "app background",
@@ -80,6 +85,49 @@ fun AdviceOnscreen(state: MutableState<Advices>) {
            verticalArrangement = Arrangement.Center,
            horizontalAlignment = Alignment.CenterHorizontally,
            ) {
+           // navigation
+           Card(
+               modifier = Modifier
+                   .fillMaxWidth()
+                   .padding(40.dp)
+                   .height(40.dp),
+               shape = RoundedCornerShape(20.dp),
+
+               ) {
+               Row(
+                   modifier = Modifier
+                       .fillMaxWidth()
+                       .background(Color.White)
+                       .padding(10.dp),
+                   horizontalArrangement = Arrangement.SpaceBetween,
+                   verticalAlignment = Alignment.CenterVertically
+               ) {
+                   Text(text = "DAILY ADVICE",
+                       modifier = Modifier,
+                       color = Gray,
+                       style = MaterialTheme.typography.h4,
+                       fontSize = 14.sp,
+
+                       )
+                   Box(modifier = Modifier
+                       .fillMaxHeight()
+                       .width(2.dp)
+                       .background(Color.Gray))
+                   Text(text = "FAVORITES",
+                       modifier = Modifier.clickable(onClick = {context.startActivity(Intent(context, Favorite::class.java))}),
+                       color = Black,
+                       style = MaterialTheme.typography.h4,
+                       fontSize = 14.sp,
+
+                       )
+
+               }
+
+
+
+           }
+
+           // advice card
            Card(modifier = Modifier
                .size(400.dp)
                .padding(40.dp)
@@ -108,9 +156,8 @@ fun AdviceOnscreen(state: MutableState<Advices>) {
                    }
                }
 
-               //copy and share card
-
            }
+           //copy and share card
            AdviceUtil()
 
 

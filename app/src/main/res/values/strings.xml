@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Advicezoid</string>
+    <string name="title_activity_favorite">Favorite</string>
 </resources>

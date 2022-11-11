@@ -20,6 +20,11 @@ val Typography = Typography(
         fontFamily = font,
         fontWeight = FontWeight.Normal,
         fontSize = 20.sp
+    ),
+    h4 = TextStyle(
+        fontFamily = font,
+        fontWeight = FontWeight.Bold,
+        fontSize = 20.sp
     )
     /* Other default text styles to override
     button = TextStyle(
