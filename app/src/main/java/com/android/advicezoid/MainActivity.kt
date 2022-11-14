@@ -3,29 +3,25 @@ package com.android.advicezoid
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
-import androidx.compose.ui.draw.scale
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.Gray
-import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -73,25 +69,32 @@ fun AdviceList(viewModel: AdviceViewModel) {
 
 fun AdviceOnscreen(state: MutableState<Advices>) {
     val context = LocalContext.current
-   Box(modifier = Modifier.fillMaxSize()){
-       Image(painter = painterResource(id = R.drawable.bg_cities),
+
+    Box(modifier = Modifier.fillMaxSize()){
+       Image(painter = painterResource(id = R.drawable.pic),
            contentDescription = "app background",
            modifier = Modifier
-               .fillMaxSize()
-               .blur(2.dp),
+               .fillMaxSize(),
            contentScale = ContentScale.Crop)
-
+        //logo
+        Column(modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ){
+            Image(painter = painterResource(id = R.drawable.transparent_logo),
+                contentDescription = "logo")
+        }
        Column(modifier = Modifier.fillMaxSize(),
            verticalArrangement = Arrangement.Center,
            horizontalAlignment = Alignment.CenterHorizontally,
            ) {
-           // navigation
+
            Card(
                modifier = Modifier
                    .fillMaxWidth()
-                   .padding(40.dp)
+                   .padding(50.dp)
                    .height(40.dp),
-               shape = RoundedCornerShape(20.dp),
+               shape = RoundedCornerShape(10.dp),
 
                ) {
                Row(
@@ -130,8 +133,7 @@ fun AdviceOnscreen(state: MutableState<Advices>) {
            // advice card
            Card(modifier = Modifier
                .size(400.dp)
-               .padding(40.dp)
-               .shadow(2.dp),
+               .padding(40.dp),
                shape = RoundedCornerShape(20.dp)
 
            ) {
@@ -142,23 +144,35 @@ fun AdviceOnscreen(state: MutableState<Advices>) {
                {
                    Column( modifier = Modifier
                        .fillMaxWidth(), horizontalAlignment = Alignment.Start) {
-                       Image(painter = painterResource(id = R.drawable.quote_vector), contentDescription = "top quote icon")
+                       Image(painter = painterResource(id = R.drawable.quote_vector),
+                           contentDescription = "start top quote icon",
+                           modifier = Modifier.rotate(180f)
+                       )
                    }
                    Column(modifier = Modifier
                        .fillMaxWidth()
                        .padding(5.dp),
                        horizontalAlignment = Alignment.CenterHorizontally) {
-                       Text(text = state.value.slip?.advice.toString(), color = Black, textAlign = TextAlign.Center, style = MaterialTheme.typography.body1)
+                       Text(text = state.value.slip?.advice.toString(),
+                           color = Black,
+                           textAlign = TextAlign.Center,
+                           style = MaterialTheme.typography.body1)
                    }
-                   Column( modifier = Modifier
-                       .fillMaxWidth(), horizontalAlignment = Alignment.End) {
-                       Image(painter = painterResource(id = R.drawable.quote_vector), contentDescription = "top quote icon")
+                   Row( modifier = Modifier
+                       .fillMaxWidth()
+                       .padding(5.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
+                       Image(painter = painterResource(id = R.drawable.love_not_liked),
+                           contentDescription = "start bottom quote icon", modifier = Modifier
+                               .size(35.dp).clickable{})
+                                   // like button
+                       Image(painter = painterResource(id = R.drawable.quote_vector),
+                           contentDescription = "start bottom quote icon")
                    }
                }
 
            }
            //copy and share card
-           AdviceUtil()
+           AdviceUtil(viewModel = AdviceViewModel())
 
 
        }

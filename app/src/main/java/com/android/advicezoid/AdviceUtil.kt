@@ -1,8 +1,10 @@
 package com.android.advicezoid
 
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -11,13 +13,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.android.advicezoid.ui.theme.AdvicezoidTheme
+import com.android.advicezoid.viewmodel.AdviceViewModel
 
 @Composable
-fun AdviceUtil() {
+fun AdviceUtil(viewModel: AdviceViewModel) {
+    val context = LocalContext.current
 
     Card(
         modifier = Modifier
@@ -36,8 +41,18 @@ fun AdviceUtil() {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(painter = painterResource(id = R.drawable.ic_sharp_share_24), contentDescription ="share button" )
-            Box(modifier = Modifier.fillMaxHeight().width(2.dp).background(Color.Gray))
-            Image(painter = painterResource(id = R.drawable.ic_sharp_content_copy_24), contentDescription ="copy button" )
+            Box(modifier = Modifier
+                .fillMaxHeight()
+                .width(2.dp)
+                .background(Color.Gray))
+            Image(painter = painterResource(id = R.drawable.ic_sharp_content_copy_24),
+                contentDescription ="copy button",
+                modifier = Modifier.clickable(onClick = {
+                    context
+
+                } )
+            )
+
         }
 
 
@@ -50,5 +65,5 @@ fun AdviceUtil() {
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview3() {
-        AdviceUtil()
+        //AdviceUtil()
 }
