@@ -64,7 +64,14 @@ fun AdviceUtil(viewModel: AdviceViewModel, state: MutableState<Advices>) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Image(painter = painterResource(id = R.drawable.ic_sharp_share_24), contentDescription ="share button" )
+            Image(painter = painterResource(id = R.drawable.ic_sharp_share_24),
+                contentDescription ="share button",
+                    modifier = Modifier.clickable(onClick = {
+                      context.shareToOthers(state.value.slip?.advice.toString())
+
+
+                    })
+            )
             Box(modifier = Modifier
                 .fillMaxHeight()
                 .width(2.dp)
@@ -73,7 +80,6 @@ fun AdviceUtil(viewModel: AdviceViewModel, state: MutableState<Advices>) {
                 contentDescription ="copy button",
                 modifier = Modifier.clickable(onClick = {
                     Toast.makeText(context, "Copied to Clipboard", Toast.LENGTH_SHORT).show()
-
                        context.copyAdvice(state.value.slip?.advice.toString())
 
 
