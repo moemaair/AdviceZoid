@@ -3,7 +3,6 @@ package com.android.advicezoid
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -16,9 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.Gray
@@ -39,6 +36,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+
             AdvicezoidTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -53,10 +51,11 @@ class MainActivity : ComponentActivity() {
 }
 @SuppressLint("UnrememberedMutableState", "CoroutineCreationDuringComposition")
 @Composable
-fun AdviceList(viewModel: AdviceViewModel) {
-    var state = viewModel.mutableState
+fun AdviceList(viewModel: AdviceViewModel = AdviceViewModel()) {
+    var state = viewModel.data
     var context = LocalContext.current
     val TAG = "MainActivity"
+
 
     runBlocking {
         launch {
@@ -77,13 +76,12 @@ fun AdviceOnscreen(state: MutableState<Advices>) {
                .fillMaxSize(),
            contentScale = ContentScale.Crop)
         //logo
-        Column(modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ){
-            Image(painter = painterResource(id = R.drawable.transparent_logo),
-                contentDescription = "logo")
-        }
+
+           Column( modifier = Modifier.fillMaxWidth() , horizontalAlignment = Alignment.CenterHorizontally) {
+               Image(painter = painterResource(id = R.drawable.transparent_logo),
+                   contentDescription = "logo", modifier = Modifier.size(120.dp), alignment = Alignment.Center)
+           }
+
        Column(modifier = Modifier.fillMaxSize(),
            verticalArrangement = Arrangement.Center,
            horizontalAlignment = Alignment.CenterHorizontally,
@@ -163,7 +161,8 @@ fun AdviceOnscreen(state: MutableState<Advices>) {
                        .padding(5.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
                        Image(painter = painterResource(id = R.drawable.love_not_liked),
                            contentDescription = "start bottom quote icon", modifier = Modifier
-                               .size(35.dp).clickable{})
+                               .size(35.dp)
+                               .clickable {})
                                    // like button
                        Image(painter = painterResource(id = R.drawable.quote_vector),
                            contentDescription = "start bottom quote icon")
@@ -171,8 +170,8 @@ fun AdviceOnscreen(state: MutableState<Advices>) {
                }
 
            }
-           //copy and share card
-           AdviceUtil(viewModel = AdviceViewModel())
+           //copy and share card(
+           AdviceUtil(viewModel = AdviceViewModel(), state = state )
 
 
        }

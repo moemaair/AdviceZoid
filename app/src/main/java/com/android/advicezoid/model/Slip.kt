@@ -6,6 +6,6 @@ import java.util.Objects
 
 data class Slip(
     @SerializedName("id"     ) var id     : Int?    = null,
-    @SerializedName("advice" ) var advice : String? = "Loading..."
+    @SerializedName("advice" ) var advice : String? = ""
 
 )

@@ -1,9 +1,5 @@
 package com.android.advicezoid.viewmodel
 
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
-import android.content.Intent
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -18,9 +14,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class AdviceViewModel : ViewModel() {
+class AdviceViewModel() : ViewModel() {
     val TAG = "MainActivity"
-    val mutableState = mutableStateOf(Advices())
+    var data = mutableStateOf(Advices())
 
     fun gettingData() {
         runBlocking {
@@ -35,8 +31,7 @@ class AdviceViewModel : ViewModel() {
                             ) {
                                 var userData = response.body()
                                 if (userData != null) {
-                                    mutableState.value = userData
-                                    Log.d(TAG, mutableState.value.slip?.advice.toString())
+                                   data.value = userData
                                 }
                             }
                             override fun onFailure(call: Call<Advices>, t: Throwable) {
@@ -49,31 +44,6 @@ class AdviceViewModel : ViewModel() {
             }
         }
     }
-
-    // used to copy quote to clipboard
-        fun Context.copyToClipboard(text: CharSequence) {
-            val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val clip = ClipData.newPlainText("label", text)
-            clipboard.setPrimaryClip(clip)
-            println(clipboard.setPrimaryClip(clip))
-        }
-
-
-    // used to share quote to other application
-    fun Context.shareToOthers(quote: String) {
-        val intent = Intent(Intent.ACTION_SEND)
-        intent.type = "text/plain"
-        intent.putExtra(Intent.EXTRA_TEXT, quote)
-        startActivity(Intent.createChooser(intent, "Share via"))
-    }
-
-
-
-
-
-
-
-
 
 
 
