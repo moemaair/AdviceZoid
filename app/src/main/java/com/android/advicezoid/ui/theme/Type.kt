@@ -1,6 +1,7 @@
 package com.android.advicezoid.ui.theme
 
 import androidx.compose.material.Typography
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -25,7 +26,13 @@ val Typography = Typography(
         fontFamily = font,
         fontWeight = FontWeight.Bold,
         fontSize = 20.sp
-    )
+    ),
+    subtitle1 = TextStyle(
+            fontFamily = font,
+    fontWeight = FontWeight.Normal,
+    fontSize = 16.sp,
+        color = Color.Gray
+)
     /* Other default text styles to override
     button = TextStyle(
         fontFamily = FontFamily.Default,

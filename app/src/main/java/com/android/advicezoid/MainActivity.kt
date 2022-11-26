@@ -11,14 +11,18 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.Gray
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -26,9 +30,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.android.advicezoid.Realm.AdviceDatabaseOperations
 import com.android.advicezoid.model.Advices
 import com.android.advicezoid.ui.theme.AdvicezoidTheme
 import com.android.advicezoid.viewmodel.AdviceViewModel
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
@@ -57,11 +63,15 @@ fun AdviceList(viewModel: AdviceViewModel = AdviceViewModel()) {
     val TAG = "MainActivity"
 
 
-    runBlocking {
-        launch {
-            viewModel.gettingData()
-        }
-    }
+   GlobalScope.launch {
+       // coroutines within a coroutine scope
+       runBlocking {
+           launch {
+               viewModel.gettingData()
+           }
+       }
+   }
+
     AdviceOnscreen(state = state)
 }
 @Composable
@@ -159,23 +169,57 @@ fun AdviceOnscreen(state: MutableState<Advices>) {
                    Row( modifier = Modifier
                        .fillMaxWidth()
                        .padding(5.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
-                       Image(painter = painterResource(id = R.drawable.love_not_liked),
-                           contentDescription = "start bottom quote icon", modifier = Modifier
-                               .size(35.dp)
-                               .clickable {})
-                                   // like button
+                       FavoriteButton()
+
+//                       // like button not clicked
                        Image(painter = painterResource(id = R.drawable.quote_vector),
-                           contentDescription = "start bottom quote icon")
+                           contentDescription = "start bottom quote icon",
+                           modifier = Modifier.clickable (onClick = {
+
+                           })
+                       )
+
                    }
                }
 
            }
            //copy and share card(
            AdviceUtil(viewModel = AdviceViewModel(), state = state )
-
-
        }
    }
+
+}
+
+@Composable
+fun FavoriteButton(
+    modifier: Modifier = Modifier,
+    color: Color = Color(0xffE91E63),
+db:AdviceDatabaseOperations = AdviceDatabaseOperations()
+) {
+
+    var isFavorite by remember { mutableStateOf(false) }
+
+    IconToggleButton(
+        checked = isFavorite,
+        onCheckedChange = {
+            isFavorite = !isFavorite
+        }
+    ) {
+        Icon(
+            tint = color,
+            modifier = modifier.graphicsLayer {
+                scaleX = 1.3f
+                scaleY = 1.3f
+            },
+            imageVector = (if (isFavorite) {
+                Icons.Filled.Favorite
+                db.insertAdvice()
+            } else {
+                Icons.Default.FavoriteBorder
+            }) as ImageVector,
+            contentDescription = null
+        )
+    }
 
 }
 
@@ -184,6 +228,6 @@ fun AdviceOnscreen(state: MutableState<Advices>) {
 @Composable
 fun DefaultPreview() {
     AdvicezoidTheme {
-
+        AdviceList()
     }
 }

@@ -18,7 +18,7 @@ class AdviceViewModel() : ViewModel() {
     val TAG = "MainActivity"
     var data = mutableStateOf(Advices())
 
-    fun gettingData() {
+    fun gettingData() { // Model capturing calling API
         runBlocking {
             withContext(Dispatchers.IO) {
                 launch {
