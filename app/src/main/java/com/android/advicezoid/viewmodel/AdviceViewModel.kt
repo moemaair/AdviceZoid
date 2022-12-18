@@ -3,6 +3,9 @@ package com.android.advicezoid.viewmodel
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import com.android.advicezoid.Room.AdviceApplication
+import com.android.advicezoid.Room.AdviceDao
+import com.android.advicezoid.Room.AdviceDb
 import com.android.advicezoid.model.AdviceApi
 import com.android.advicezoid.model.Advices
 import kotlinx.coroutines.Dispatchers
@@ -44,6 +47,8 @@ class AdviceViewModel() : ViewModel() {
             }
         }
     }
+    private var adviceDao = AdviceDb.getDaoInstance(AdviceApplication.getAppContext())
+
 
 
 
