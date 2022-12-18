@@ -46,9 +46,9 @@ fun AboutScreen() {
                     Icon(
                         imageVector = Icons.Default.ArrowBack, contentDescription = "",
                         Modifier.clickable(onClick = {
-                            context.startActivity(
-                                Intent(context, Favorite::class.java)
-                            )
+                            //context.startActivity(
+                               // Intent(context, Favorite::class.java)
+                            //)
                         }),
                     )
                     Text(
@@ -60,9 +60,9 @@ fun AboutScreen() {
 
             }
         }
-    ){
-        AboutApp()
-    }
+//    ){
+//        //AboutApp()
+//    }
 }
 
 

@@ -30,7 +30,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.android.advicezoid.Realm.AdviceDatabaseOperations
 import com.android.advicezoid.model.Advices
 import com.android.advicezoid.ui.theme.AdvicezoidTheme
 import com.android.advicezoid.viewmodel.AdviceViewModel
@@ -125,7 +124,7 @@ fun AdviceOnscreen(state: MutableState<Advices>) {
                        .width(2.dp)
                        .background(Color.Gray))
                    Text(text = "FAVORITES",
-                       modifier = Modifier.clickable(onClick = {context.startActivity(Intent(context, Favorite::class.java))}),
+                       //modifier = Modifier.clickable(onClick = {context.startActivity(Intent(context, Favorite::class.java))}),
                        color = Black,
                        style = MaterialTheme.typography.h4,
                        fontSize = 14.sp,
@@ -194,7 +193,6 @@ fun AdviceOnscreen(state: MutableState<Advices>) {
 fun FavoriteButton(
     modifier: Modifier = Modifier,
     color: Color = Color(0xffE91E63),
-db:AdviceDatabaseOperations = AdviceDatabaseOperations()
 ) {
 
     var isFavorite by remember { mutableStateOf(false) }
@@ -213,7 +211,6 @@ db:AdviceDatabaseOperations = AdviceDatabaseOperations()
             },
             imageVector = (if (isFavorite) {
                 Icons.Filled.Favorite
-                db.insertAdvice()
             } else {
                 Icons.Default.FavoriteBorder
             }) as ImageVector,
