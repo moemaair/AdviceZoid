@@ -14,7 +14,22 @@ import com.android.advicezoid.model.Slip
 abstract class AdviceDb: RoomDatabase(){
     abstract val dao: AdviceDao
 
-    companion object{
+    companion object{  //obtain a reference to the Dao instance
+
+        @Volatile
+        private var INSTANCE: AdviceDao? = null
+
+        fun getDaoInstance(context: Context): AdviceDao{
+            synchronized(this) {
+                var instance = INSTANCE
+                if (instance == null) {
+                    instance = buildDatabase(context).dao
+                    INSTANCE = instance
+                }
+                return instance
+            }
+        }
+
         private fun buildDatabase(context: Context):
                 AdviceDb = Room.databaseBuilder(
                 context.applicationContext,
