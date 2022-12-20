@@ -1,7 +1,6 @@
 package com.android.advicezoid
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -9,6 +8,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -31,6 +31,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.android.advicezoid.model.Advices
+import com.android.advicezoid.model.Slip
 import com.android.advicezoid.ui.theme.AdvicezoidTheme
 import com.android.advicezoid.viewmodel.AdviceViewModel
 import kotlinx.coroutines.GlobalScope
@@ -47,8 +48,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
+                    AdviceList(viewModel = AdviceViewModel(applicationContext))
 
-                    AdviceList(viewModel = AdviceViewModel())
                 }
             }
         }
@@ -56,11 +57,11 @@ class MainActivity : ComponentActivity() {
 }
 @SuppressLint("UnrememberedMutableState", "CoroutineCreationDuringComposition")
 @Composable
-fun AdviceList(viewModel: AdviceViewModel = AdviceViewModel()) {
-    var state = viewModel.data
+fun AdviceList(viewModel: AdviceViewModel = AdviceViewModel(LocalContext.current)) {
+  var state = viewModel.data
     var context = LocalContext.current
     val TAG = "MainActivity"
-
+    //viewModel.writeData(state);
 
    GlobalScope.launch {
        // coroutines within a coroutine scope
@@ -71,7 +72,7 @@ fun AdviceList(viewModel: AdviceViewModel = AdviceViewModel()) {
        }
    }
 
-    AdviceOnscreen(state = state)
+  AdviceOnscreen(state = state)
 }
 @Composable
 
@@ -84,7 +85,6 @@ fun AdviceOnscreen(state: MutableState<Advices>) {
            modifier = Modifier
                .fillMaxSize(),
            contentScale = ContentScale.Crop)
-        //logo
 
            Column( modifier = Modifier.fillMaxWidth() , horizontalAlignment = Alignment.CenterHorizontally) {
                Image(painter = painterResource(id = R.drawable.transparent_logo),
@@ -156,14 +156,28 @@ fun AdviceOnscreen(state: MutableState<Advices>) {
                            modifier = Modifier.rotate(180f)
                        )
                    }
-                   Column(modifier = Modifier
-                       .fillMaxWidth()
-                       .padding(5.dp),
-                       horizontalAlignment = Alignment.CenterHorizontally) {
-                       Text(text = state.value.slip?.advice.toString(),
-                           color = Black,
-                           textAlign = TextAlign.Center,
-                           style = MaterialTheme.typography.body1)
+                   //where advice text is
+
+                   LazyColumn{
+                       if(state.value.slip?.advice?.isEmpty() == true){
+                           item{
+                               CircularProgressIndicator(
+                                   modifier = Modifier.fillMaxSize()
+                                       .wrapContentSize(align = Alignment.Center)
+                               )
+                           }
+                       }
+                       item {
+                           Column(modifier = Modifier
+                               .fillMaxWidth()
+                               .padding(5.dp),
+                               horizontalAlignment = Alignment.CenterHorizontally) {
+                               Text(text = state.value.slip?.advice.toString(),
+                                   color = Black,
+                                   textAlign = TextAlign.Center,
+                                   style = MaterialTheme.typography.body1)
+                           }
+                       }
                    }
                    Row( modifier = Modifier
                        .fillMaxWidth()
@@ -182,8 +196,7 @@ fun AdviceOnscreen(state: MutableState<Advices>) {
                }
 
            }
-           //copy and share card(
-           AdviceUtil(viewModel = AdviceViewModel(), state = state )
+           AdviceUtil(viewModel = AdviceViewModel(LocalContext.current), state = state )
        }
    }
 

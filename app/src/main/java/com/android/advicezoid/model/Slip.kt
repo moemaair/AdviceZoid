@@ -2,15 +2,18 @@ package com.android.advicezoid.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.android.advicezoid.R
 import com.google.gson.annotations.SerializedName
-import java.util.Objects
 
 @Entity(tableName = "advices_table")
 data class Slip(
-    @ColumnInfo(name = "id")
-    @SerializedName("id") var id: Int? = null,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int? = 0,
+    //@SerializedName("id") var id: Int?,
 
-    @ColumnInfo(name = "advice")
-    @SerializedName("advice") var advice : String? = ""
-
+    @ColumnInfo(name = "advice_column")
+    @SerializedName("advice") var advice: String? = ""
 )
+
+

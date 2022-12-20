@@ -13,7 +13,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,6 +21,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.android.advicezoid.model.Advices
+import com.android.advicezoid.model.Slip
 import com.android.advicezoid.repository.AdvicesRepo
 import com.android.advicezoid.viewmodel.AdviceViewModel
 
@@ -68,8 +68,6 @@ fun AdviceUtil(viewModel: AdviceViewModel, state: MutableState<Advices>) {
                 contentDescription ="share button",
                     modifier = Modifier.clickable(onClick = {
                       context.shareToOthers(state.value.slip?.advice.toString())
-
-
                     })
             )
             Box(modifier = Modifier

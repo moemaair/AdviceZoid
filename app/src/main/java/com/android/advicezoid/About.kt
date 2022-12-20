@@ -60,6 +60,7 @@ fun AboutScreen() {
 
             }
         }
+    ){}
 //    ){
 //        //AboutApp()
 //    }
