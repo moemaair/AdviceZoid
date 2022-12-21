@@ -1,16 +1,30 @@
 plugins {
     id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
-    id 'org.jetbrains.kotlin.kapt'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
+    id 'com.google.devtools.ksp' version '1.7.20-1.0.6'
 }
-apply plugin: "realm-android"
+
+// FOR COMPOSE DESTINATION
+kotlin {
+    sourceSets {
+        debug {
+            kotlin.srcDir("build/generated/ksp/debug/kotlin")
+        }
+        release {
+            kotlin.srcDir("build/generated/ksp/release/kotlin")
+        }
+    }
+}
+
+
 android {
     namespace 'com.android.advicezoid'
     compileSdk 33
 
     defaultConfig {
         applicationId "com.android.advicezoid"
-        minSdk 21
+        minSdk 26
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -38,34 +52,34 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.1.1'
+        kotlinCompilerExtensionVersion compose_ui_version
+        //kotlinCompilerVersion '1.6.0'
+
     }
     packagingOptions {
         resources {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
-
 }
 
 dependencies {
-
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
     implementation 'androidx.activity:activity-compose:1.6.1'
-    implementation "androidx.compose.ui:ui:1.3.1"
-    implementation "androidx.compose.ui:ui-tooling-preview:1.3.1"
-    implementation 'androidx.compose.material:material:1.3.1'
+    implementation "androidx.compose.ui:ui:$compose_ui_version"
+    implementation "androidx.compose.ui:ui-tooling-preview:$compose_ui_version"
+    implementation "androidx.compose.material:material:1.3.1"
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:1.3.1"
-    debugImplementation "androidx.compose.ui:ui-tooling:1.3.1"
-    debugImplementation "androidx.compose.ui:ui-test-manifest:1.3.1"
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
+    debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
+    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
 
     //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-
 
     // Gson Converter
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
@@ -76,7 +90,6 @@ dependencies {
     // coroutine
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
-
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
 
     implementation("io.coil-kt:coil-compose:2.2.2")
@@ -85,14 +98,21 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor")
 
     implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
-    implementation("androidx.compose.foundation:foundation:1.4.0-alpha02")
+    implementation("androidx.compose.foundation:foundation:1.4.0-alpha03")
 
-    //realm
-    implementation 'io.realm:realm-gradle-plugin:10.11.1'
 
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
+
+    //implementation "androidx.navigation:navigation-compose:2.4.0-rc01"
+    // third party navigation by -raamcoasta ( lib name: Destinations compose)
+
+    def destinations_version = '1.7.27-beta'
+
+
+    implementation "io.github.raamcosta.compose-destinations:core:$destinations_version"
+    ksp "io.github.raamcosta.compose-destinations:ksp:$destinations_version"
 
 }
 

@@ -21,7 +21,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.android.advicezoid.model.Advices
-import com.android.advicezoid.model.Slip
 import com.android.advicezoid.repository.AdvicesRepo
 import com.android.advicezoid.viewmodel.AdviceViewModel
 
@@ -43,19 +42,16 @@ fun Context.shareToOthers(quote: String) {
 }
 
 @Composable
-fun AdviceUtil(viewModel: AdviceViewModel, state: MutableState<Advices>) {
+fun ShareAndCopyComposable(viewModel: AdviceViewModel, state: MutableState<Advices>) {
     val context = LocalContext.current
     val repo = AdvicesRepo()
-
 
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(40.dp)
             .height(40.dp),
-        shape = RoundedCornerShape(20.dp),
-
-    ) {
+        shape = RoundedCornerShape(20.dp),) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -79,8 +75,6 @@ fun AdviceUtil(viewModel: AdviceViewModel, state: MutableState<Advices>) {
                 modifier = Modifier.clickable(onClick = {
                     Toast.makeText(context, "Copied to Clipboard", Toast.LENGTH_SHORT).show()
                        context.copyAdvice(state.value.slip?.advice.toString())
-
-
                 })
             )
 
@@ -90,13 +84,4 @@ fun AdviceUtil(viewModel: AdviceViewModel, state: MutableState<Advices>) {
 
     }
 
-}
-
-
-
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview3() {
-        //AdviceUtil()
 }

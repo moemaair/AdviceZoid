@@ -1,22 +1,17 @@
 package com.android.advicezoid.viewmodel
 
-import AppDatabase
-import android.content.Context
-import android.util.Log
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 
 import com.android.advicezoid.model.AdviceApi
 import com.android.advicezoid.model.Advices
-import com.android.advicezoid.model.Slip
 import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
-class AdviceViewModel(context: Context) : ViewModel() {
+class AdviceViewModel : ViewModel() {
     val TAG = "MainActivity"
     val data = mutableStateOf(Advices())
     //private val appDb : AppDatabase =

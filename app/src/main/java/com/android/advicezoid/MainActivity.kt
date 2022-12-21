@@ -9,6 +9,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -27,14 +28,17 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.android.advicezoid.model.Advices
-import com.android.advicezoid.model.Slip
+import androidx.navigation.NavHostController
+import com.android.advicezoid.destinations.FavDestination
 import com.android.advicezoid.ui.theme.AdvicezoidTheme
 import com.android.advicezoid.viewmodel.AdviceViewModel
-import kotlinx.coroutines.GlobalScope
+import com.ramcosta.composedestinations.DestinationsNavHost
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootNavGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.ramcosta.composedestinations.navigation.navigate
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
@@ -48,37 +52,28 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    AdviceList(viewModel = AdviceViewModel(applicationContext))
-
+                    DestinationsNavHost(navGraph = NavGraphs.root)
                 }
             }
         }
     }
 }
-@SuppressLint("UnrememberedMutableState", "CoroutineCreationDuringComposition")
+
+
+@RootNavGraph(start = true) // sets this as the start destination of the default nav graph
+@Destination
 @Composable
-fun AdviceList(viewModel: AdviceViewModel = AdviceViewModel(LocalContext.current)) {
-  var state = viewModel.data
-    var context = LocalContext.current
-    val TAG = "MainActivity"
-    //viewModel.writeData(state);
-
-   GlobalScope.launch {
-       // coroutines within a coroutine scope
-       runBlocking {
-           launch {
-               viewModel.gettingData()
-           }
-       }
-   }
-
-  AdviceOnscreen(state = state)
-}
-@Composable
-
-fun AdviceOnscreen(state: MutableState<Advices>) {
+fun HomeScreen(
+    navigator: DestinationsNavigator
+) {
     val context = LocalContext.current
-
+    val viewModel = AdviceViewModel()
+    // calling the data from Api
+    runBlocking {
+        launch {
+            viewModel.gettingData()
+        }
+    }
     Box(modifier = Modifier.fillMaxSize()){
        Image(painter = painterResource(id = R.drawable.pic),
            contentDescription = "app background",
@@ -123,18 +118,15 @@ fun AdviceOnscreen(state: MutableState<Advices>) {
                        .fillMaxHeight()
                        .width(2.dp)
                        .background(Color.Gray))
-                   Text(text = "FAVORITES",
-                       //modifier = Modifier.clickable(onClick = {context.startActivity(Intent(context, Favorite::class.java))}),
+
+                   Text(
+                       text = "FAVORITES",
                        color = Black,
                        style = MaterialTheme.typography.h4,
                        fontSize = 14.sp,
-
-                       )
-
+                       modifier = Modifier.clickable(onClick = {navigator.navigate(FavDestination)})
+                   )
                }
-
-
-
            }
 
            // advice card
@@ -157,13 +149,14 @@ fun AdviceOnscreen(state: MutableState<Advices>) {
                        )
                    }
                    //where advice text is
-
                    LazyColumn{
-                       if(state.value.slip?.advice?.isEmpty() == true){
+                       if(viewModel.data.value.slip?.advice?.isEmpty() == true){
                            item{
-                               CircularProgressIndicator(
-                                   modifier = Modifier.fillMaxSize()
-                                       .wrapContentSize(align = Alignment.Center)
+                               LinearProgressIndicator(
+                                   modifier = Modifier
+                                       .fillMaxSize()
+                                       .wrapContentSize(align = Alignment.Center),
+                                   color = Color(0XFF4BAD91),
                                )
                            }
                        }
@@ -172,7 +165,7 @@ fun AdviceOnscreen(state: MutableState<Advices>) {
                                .fillMaxWidth()
                                .padding(5.dp),
                                horizontalAlignment = Alignment.CenterHorizontally) {
-                               Text(text = state.value.slip?.advice.toString(),
+                               Text(text = viewModel.data.value.slip?.advice.toString(),
                                    color = Black,
                                    textAlign = TextAlign.Center,
                                    style = MaterialTheme.typography.body1)
@@ -183,25 +176,33 @@ fun AdviceOnscreen(state: MutableState<Advices>) {
                        .fillMaxWidth()
                        .padding(5.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
                        FavoriteButton()
-
-//                       // like button not clicked
                        Image(painter = painterResource(id = R.drawable.quote_vector),
-                           contentDescription = "start bottom quote icon",
-                           modifier = Modifier.clickable (onClick = {
-
-                           })
+                           contentDescription = "start bottom quote icon"
                        )
 
                    }
                }
 
            }
-           AdviceUtil(viewModel = AdviceViewModel(LocalContext.current), state = state )
+           ShareAndCopyComposable(viewModel = AdviceViewModel(), state = viewModel.data )
        }
    }
 
 }
 
+
+@Destination
+@Composable
+fun Fav() {
+    val no = MutableList<Int>(2){it}
+    LazyColumn{
+        items(no){
+            Text(text = no.toString())
+        }
+    }
+}
+
+// like button component
 @Composable
 fun FavoriteButton(
     modifier: Modifier = Modifier,
@@ -231,13 +232,4 @@ fun FavoriteButton(
         )
     }
 
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    AdvicezoidTheme {
-        AdviceList()
-    }
 }
