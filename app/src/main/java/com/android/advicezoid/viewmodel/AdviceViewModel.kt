@@ -1,6 +1,10 @@
 package com.android.advicezoid.viewmodel
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModel
 
 import com.android.advicezoid.model.AdviceApi
@@ -11,11 +15,12 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class AdviceViewModel : ViewModel() {
+class AdviceViewModel( ) : ViewModel() {
     val TAG = "MainActivity"
     val data = mutableStateOf(Advices())
+
     //private val appDb : AppDatabase =
-    fun gettingData() { // Model capturing calling API
+    fun gettingData(context: Context): Unit { // Model capturing calling API
         runBlocking {
             withContext(Dispatchers.IO) {
                 launch {
@@ -32,15 +37,17 @@ class AdviceViewModel : ViewModel() {
                             }
 
                             override fun onFailure(call: Call<Advices>, t: Throwable) {
-                                TODO("Not yet implemented")
+                                Toast.makeText(context, "Check on your Internet connection...", Toast.LENGTH_SHORT).show()
                             }
-
 
                         })
                     }
             }
         }
     }
+
+
+
 
 
 //    @OptIn(DelicateCoroutinesApi::class)

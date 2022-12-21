@@ -2,6 +2,7 @@ package com.android.advicezoid
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -13,6 +14,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.*
@@ -22,6 +24,8 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.Gray
+import androidx.compose.ui.graphics.Color.Companion.Red
+import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
@@ -32,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.android.advicezoid.destinations.FavDestination
+import com.android.advicezoid.destinations.HomeScreenDestination
 import com.android.advicezoid.ui.theme.AdvicezoidTheme
 import com.android.advicezoid.viewmodel.AdviceViewModel
 import com.ramcosta.composedestinations.DestinationsNavHost
@@ -39,8 +44,13 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.ramcosta.composedestinations.navigation.navigate
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
+
+lateinit var viewModel: AdviceViewModel
+lateinit var gettingData: Unit
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,15 +73,14 @@ class MainActivity : ComponentActivity() {
 @RootNavGraph(start = true) // sets this as the start destination of the default nav graph
 @Destination
 @Composable
-fun HomeScreen(
-    navigator: DestinationsNavigator
-) {
+fun HomeScreen(navigator: DestinationsNavigator) {
+    viewModel = AdviceViewModel()
     val context = LocalContext.current
-    val viewModel = AdviceViewModel()
+    gettingData = viewModel.gettingData(context)
     // calling the data from Api
     runBlocking {
         launch {
-            viewModel.gettingData()
+            gettingData
         }
     }
     Box(modifier = Modifier.fillMaxSize()){
@@ -175,7 +184,7 @@ fun HomeScreen(
                    Row( modifier = Modifier
                        .fillMaxWidth()
                        .padding(5.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
-                       FavoriteButton()
+                       FavoriteButton(modifier = Modifier,Color(0xffE91E63))
                        Image(painter = painterResource(id = R.drawable.quote_vector),
                            contentDescription = "start bottom quote icon"
                        )
@@ -191,13 +200,62 @@ fun HomeScreen(
 }
 
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Destination
 @Composable
-fun Fav() {
-    val no = MutableList<Int>(2){it}
-    LazyColumn{
-        items(no){
-            Text(text = no.toString())
+fun Fav(navigator: DestinationsNavigator) {
+    val context = LocalContext.current
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                backgroundColor = Transparent,
+                elevation = 0.dp
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                )
+                    {
+                    //arrow
+                    IconButton(onClick = { navigator.navigate(HomeScreenDestination) }) {
+                        Icon(imageVector = Icons.Default.ArrowBack , contentDescription = "back home")
+                    }
+                    //text
+                    Text(text = "Favorites", fontSize = 17.sp)
+                        Spacer(modifier = Modifier.size(30.dp))
+                }
+            }
+        }
+    ){
+        viewModel = AdviceViewModel()
+        var getdata = gettingData
+        runBlocking {
+            //getdata = viewModel.gettingData(context = context)
+        }
+
+        LazyColumn{
+            if(viewModel.data.value.slip?.advice?.isEmpty() == true){
+                item{
+                    LinearProgressIndicator(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        color = Color(0XFF4BAD91),
+                    )
+                }
+            }
+            item {
+                Column(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(5.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally) {
+                    Text(text = viewModel.data.value.slip?.advice.toString(),
+                        color = Black,
+                        textAlign = TextAlign.Center,
+                        style = MaterialTheme.typography.body1)
+                }
+            }
         }
     }
 }
@@ -205,17 +263,21 @@ fun Fav() {
 // like button component
 @Composable
 fun FavoriteButton(
-    modifier: Modifier = Modifier,
-    color: Color = Color(0xffE91E63),
+    modifier: Modifier ,
+    color: Color ,
+    //stringFromAdvice: String
 ) {
 
     var isFavorite by remember { mutableStateOf(false) }
-
+         val ctx = LocalContext.current
     IconToggleButton(
         checked = isFavorite,
         onCheckedChange = {
             isFavorite = !isFavorite
-        }
+        },
+        modifier = Modifier.clickable (onClick = {
+                Toast.makeText(ctx, "hey", Toast.LENGTH_SHORT).show()
+            } )
     ) {
         Icon(
             tint = color,
