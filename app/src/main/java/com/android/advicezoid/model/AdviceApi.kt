@@ -11,6 +11,7 @@ interface AdviceApi {
     @GET("advice")
     fun getAdvice(): Call<Advices>
 
+
     companion object {
         var retrofitService: AdviceApi? = null
         fun getInstance(): AdviceApi {  // a function which is the initialization of Apiservice.kt to let Retrofit do their job initialize service from trinya.heruko.com .

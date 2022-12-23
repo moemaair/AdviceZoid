@@ -9,11 +9,11 @@ import com.google.gson.annotations.SerializedName
 @Entity(tableName = "advices_table")
 data class Slip(
     @PrimaryKey(autoGenerate = true)
-    val id: Int? = 0,
-    //@SerializedName("id") var id: Int?,
+    val id: Int = 0,
 
+    @SerializedName("advice")
     @ColumnInfo(name = "advice_column")
-    @SerializedName("advice") var advice: String? = ""
+    var advice: String = ""
 )
 
 

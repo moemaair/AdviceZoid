@@ -21,7 +21,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.android.advicezoid.model.Advices
-import com.android.advicezoid.repository.AdvicesRepo
 import com.android.advicezoid.viewmodel.AdviceViewModel
 
 // used to copy quote to clipboard
@@ -44,7 +43,7 @@ fun Context.shareToOthers(quote: String) {
 @Composable
 fun ShareAndCopyComposable(viewModel: AdviceViewModel, state: MutableState<Advices>) {
     val context = LocalContext.current
-    val repo = AdvicesRepo()
+   // val repo = AdvicesRepo()
 
     Card(
         modifier = Modifier
