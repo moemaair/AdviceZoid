@@ -10,10 +10,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.android.advicezoid.destinations.HomeScreenDestination
 import com.android.advicezoid.viewmodel.AdviceViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -21,18 +24,25 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Destination
 @Composable
-fun Fav(navigator: DestinationsNavigator, viewModel: AdviceViewModel = hiltViewModel()) {
+fun Fav(navigator: DestinationsNavigator,
+        viewModel: AdviceViewModel = hiltViewModel()
+) {
     val context = LocalContext.current
-
     val advices by viewModel.advices.collectAsState(
         initial = emptyList()
     )
+
+    var selectedIndex by remember {
+        mutableStateOf(0)
+    }
+    val itemsDropDown = listOf("clear all")
 
     Scaffold(
         topBar = {
             TopAppBar(
                 backgroundColor = Transparent,
-                elevation = 0.dp
+                elevation = 0.dp,
+
             ) {
                 Row(
                     modifier = Modifier
@@ -40,12 +50,50 @@ fun Fav(navigator: DestinationsNavigator, viewModel: AdviceViewModel = hiltViewM
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    IconButton(onClick = { }) {
+                    IconButton(onClick = { navigator.navigate(HomeScreenDestination)}) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
                             contentDescription = "back home"
                         )
                     }
+                    Text(text = "Favorites" , fontSize = 16.sp, style = MaterialTheme.typography.h3)
+
+                    // call our dropdown here
+                    Box() {
+                        TextButton(onClick = { viewModel.expanded = true }) {
+                            Row() {
+                                Icon(
+                                    imageVector = Icons.Default.ArrowDropDown,
+                                    contentDescription = "Dop Down",
+                                    tint = Gray
+                                )
+                            }
+
+                        }
+                        DropdownMenu(
+                            expanded = viewModel.expanded,
+                            onDismissRequest = {
+                                viewModel.expanded = false
+                            }) {
+                            itemsDropDown.forEachIndexed { index, s ->
+                                DropdownMenuItem(
+                                    onClick = {
+                                        viewModel.expanded = false
+                                        selectedIndex = index
+                                    }
+                                )
+                                {
+                                    Column() {
+                                        Text(text = s)
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+
+
+
                 }
             }
         },

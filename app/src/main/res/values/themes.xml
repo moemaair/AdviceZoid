@@ -3,5 +3,6 @@
 
     <style name="Theme.Advicezoid" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:statusBarColor">@color/statusbar</item>
+        <item name="android:navigationBarColor">@color/statusbar</item>
     </style>
 </resources>

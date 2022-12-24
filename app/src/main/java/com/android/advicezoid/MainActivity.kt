@@ -1,6 +1,7 @@
 package com.android.advicezoid
 
 import android.os.Bundle
+import android.view.Window
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -29,6 +30,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.graphics.alpha
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.advicezoid.destinations.FavDestination
 import com.android.advicezoid.model.Slip
@@ -89,12 +91,7 @@ fun HomeScreen( viewModel: AdviceViewModel = hiltViewModel(),navigator: Destinat
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.transparent_logo),
-                    contentDescription = "logo",
-                    modifier = Modifier.size(120.dp),
-                    alignment = Alignment.Center
-                )
+                Spacer(modifier = Modifier.size(100.dp))
             }
 
             Column(
@@ -226,6 +223,7 @@ fun HomeScreen( viewModel: AdviceViewModel = hiltViewModel(),navigator: Destinat
 
                 }
                 ShareAndCopyComposable( state = viewModel.data )
+
             }
         }
 
@@ -282,13 +280,15 @@ fun FavoriteButton(
         ) {
             Icon(
                 tint = color,
-                modifier = modifier.graphicsLayer {
-                    scaleX = 1.3f
-                    scaleY = 1.3f
-                }.clickable(onClick = {
-                    val advice = Slip(0,"" )
-                    if(!isFavorite) takeAdvice(advice) else println("No data! sorry")
-                }),
+                modifier = modifier
+                    .graphicsLayer {
+                        scaleX = 1.3f
+                        scaleY = 1.3f
+                    }
+                    .clickable(onClick = {
+                        val advice = Slip(0, "")
+                        if (!isFavorite) takeAdvice(advice) else println("No data! sorry")
+                    }),
                 imageVector = (if (!isFavorite) {
                     Icons.Default.FavoriteBorder
                 }

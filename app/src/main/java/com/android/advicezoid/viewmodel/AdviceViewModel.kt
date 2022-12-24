@@ -32,6 +32,8 @@ class AdviceViewModel @Inject constructor(
     val data = mutableStateOf(Advices())
     var isFavorite by mutableStateOf(false)
 
+    var expanded by mutableStateOf(false)
+
     var advice by mutableStateOf(Slip(0,""))
         private set
 
@@ -66,6 +68,11 @@ class AdviceViewModel @Inject constructor(
     }
 
     val advices = repo.getAdvicesFromRoom()
+
+    fun deleteAll(advice: Slip) = viewModelScope.launch (Dispatchers.IO){
+        repo.deleteBookFromRoom(advice)
+    }
+
 
 
 

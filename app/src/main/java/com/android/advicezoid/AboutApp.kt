@@ -33,12 +33,12 @@ Column(modifier = Modifier
    Column(modifier = Modifier
        .fillMaxWidth()) {
        Column() {
-           Image(painter = painterResource(id = R.drawable.logo_app),
-               contentDescription = null,
-               modifier = Modifier
-                   .size(100.dp)
-                   .clip(RoundedCornerShape(30.dp))
-                   .shadow(10.dp))
+//           Image(painter = painterResource(id = R.drawable.logo_app),
+//               contentDescription = null,
+//               modifier = Modifier
+//                   .size(100.dp)
+//                   .clip(RoundedCornerShape(30.dp))
+//                   .shadow(10.dp))
            Text(text = "Advicezoid", textAlign = TextAlign.Center)
            Text(text = "v1.0(1)", style = MaterialTheme.typography.subtitle1, textAlign = TextAlign.Center)
        }

@@ -22,10 +22,10 @@ val Typography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 20.sp
     ),
-    h4 = TextStyle(
+    h3 = TextStyle(
         fontFamily = font,
         fontWeight = FontWeight.Bold,
-        fontSize = 20.sp
+        fontSize = 17.sp
     ),
     subtitle1 = TextStyle(
             fontFamily = font,
