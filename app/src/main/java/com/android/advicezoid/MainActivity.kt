@@ -78,7 +78,6 @@ fun HomeScreen( viewModel: AdviceViewModel = hiltViewModel(),navigator: Destinat
 
             }
     }
-
         Box(modifier = Modifier.fillMaxSize()) {
             Image(
                 painter = painterResource(id = R.drawable.pic),
@@ -239,35 +238,50 @@ fun FavoriteButton(
     viewModel: AdviceViewModel,
     takeAdvice: (advice: Slip) -> Unit
 ) {
-        var isFavorite = viewModel.isFavorite
-        val ctx = LocalContext.current
-        IconToggleButton(
-            checked = isFavorite,
-            onCheckedChange = {
-                isFavorite = !isFavorite
-            },
-            modifier = Modifier,
 
+        val advice = Slip(0, "")
+        val ctx = LocalContext.current
+
+        var imageVector: ImageVector by remember {
+                mutableStateOf(Icons.Default.FavoriteBorder)
+        }
+        IconToggleButton(
+            checked = viewModel.isFavorite,
+            onCheckedChange = {
+                viewModel.isFavorite = !viewModel.isFavorite
+            }
         ) {
+            //!isFavorite means not clicked
             Icon(
-                tint = color,
+                imageVector = imageVector,
+                contentDescription = "heart icon",
                 modifier = modifier
                     .graphicsLayer {
                         scaleX = 1.3f
                         scaleY = 1.3f
                     }
-                    .clickable(onClick = {
-                        val advice = Slip(0, "")
-                        if (!isFavorite) takeAdvice(advice) else println("No data! sorry")
-                    }),
-                imageVector = (if (!isFavorite) {
-                    Icons.Default.FavoriteBorder
-                }
-                else {
-                    Icons.Filled.Favorite
-                }) as ImageVector,
-                contentDescription = null
-            )
+                    .clickable {
+                        if (!viewModel.isFavorite) {
+                            takeAdvice(advice)  // sending data to a fava page
+                            imageVector = Icons.Default.Favorite
+
+                        } else {
+                            println("No data! sorry")
+                        }
+                    },
+                tint = color,
+                )
+
+//            Icon(
+//                tint = color,
+//                modifier = modifier.graphicsLayer {
+//                        scaleX = 1.3f
+//                        scaleY = 1.3f
+//                    }.clickable(onClick = {
+//                        if (!isFavorite) takeAdvice(advice) else println("No data! sorry")
+//                    }),
+//                imageVector = if (!isFavorite) Icons.Default.FavoriteBorder else Icons.Filled.Favorite
+//            )
         }
 
 }

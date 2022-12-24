@@ -35,7 +35,6 @@ fun Fav(navigator: DestinationsNavigator,
     var selectedIndex by remember {
         mutableStateOf(0)
     }
-    val itemsDropDown = listOf("clear all")
 
     Scaffold(
         topBar = {
