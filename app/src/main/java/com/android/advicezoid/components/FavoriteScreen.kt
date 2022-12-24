@@ -17,21 +17,21 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.advicezoid.destinations.HomeScreenDestination
+import com.android.advicezoid.model.Slip
 import com.android.advicezoid.viewmodel.AdviceViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
-@Destination
+@Destination()
 @Composable
 fun Fav(navigator: DestinationsNavigator,
-        viewModel: AdviceViewModel = hiltViewModel()
+        viewModel: AdviceViewModel = hiltViewModel(),
 ) {
     val context = LocalContext.current
     val advices by viewModel.advices.collectAsState(
         initial = emptyList()
     )
-
     var selectedIndex by remember {
         mutableStateOf(0)
     }
@@ -59,40 +59,7 @@ fun Fav(navigator: DestinationsNavigator,
                     Text(text = "Favorites" , fontSize = 16.sp, style = MaterialTheme.typography.h3)
 
                     // call our dropdown here
-                    Box() {
-                        TextButton(onClick = { viewModel.expanded = true }) {
-                            Row() {
-                                Icon(
-                                    imageVector = Icons.Default.ArrowDropDown,
-                                    contentDescription = "Dop Down",
-                                    tint = Gray
-                                )
-                            }
-
-                        }
-                        DropdownMenu(
-                            expanded = viewModel.expanded,
-                            onDismissRequest = {
-                                viewModel.expanded = false
-                            }) {
-                            itemsDropDown.forEachIndexed { index, s ->
-                                DropdownMenuItem(
-                                    onClick = {
-                                        viewModel.expanded = false
-                                        selectedIndex = index
-                                    }
-                                )
-                                {
-                                    Column() {
-                                        Text(text = s)
-                                    }
-                                }
-                            }
-
-                        }
-                    }
-
-
+                    FavoriteScreenDropdownMenu()
 
                 }
             }

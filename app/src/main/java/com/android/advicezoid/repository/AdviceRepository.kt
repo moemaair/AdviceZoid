@@ -12,5 +12,5 @@ interface AdviceRepository{
     //CRUD --> CREATE -> READ -> DELETE
     fun getAdvicesFromRoom(): Flow<Slips>   // get all
     fun addAdviceToRoom(advice: Slip) // add
-    fun deleteBookFromRoom(advice: Slip) // delete
+    fun deleteAllAdvicesFromRoom() // delete
 }

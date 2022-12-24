@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.alpha
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.android.advicezoid.components.Fav
 import com.android.advicezoid.destinations.FavDestination
 import com.android.advicezoid.model.Slip
 import com.android.advicezoid.ui.theme.AdvicezoidTheme
@@ -139,6 +140,7 @@ fun HomeScreen( viewModel: AdviceViewModel = hiltViewModel(),navigator: Destinat
                             modifier = Modifier.clickable(onClick = {
                                 // to favorite screen
                                 navigator.navigate(FavDestination)
+
                             })
                         )
                     }
@@ -229,37 +231,6 @@ fun HomeScreen( viewModel: AdviceViewModel = hiltViewModel(),navigator: Destinat
 
     }
 
-@Composable
-fun FavDropDown(list: List<String>) {
-        var expandedState by remember { mutableStateOf(false) }
-        var selectedIndex by remember { mutableStateOf(0) }
-        Box(
-            modifier = Modifier
-                .size(100.dp)
-                .background(color = Color.Gray)
-        ) {
-            DropdownMenu(
-                expanded = expandedState,
-                onDismissRequest = { expandedState = false },
-                modifier = Modifier
-                    .size(100.dp)
-                    .background(color = Color.Gray)
-            ) {
-                list.forEachIndexed { index, elementOfList ->
-                    DropdownMenuItem(onClick = {
-                        selectedIndex = index
-                        expandedState = false
-                    })
-                    {
-                        Text(text = elementOfList)
-                    }
-
-                }
-            }
-        }
-
-
-    }
 
 @Composable
 fun FavoriteButton(
