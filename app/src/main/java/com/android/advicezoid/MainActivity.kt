@@ -225,7 +225,7 @@ fun HomeScreen( viewModel: AdviceViewModel = hiltViewModel(),navigator: Destinat
                     }
 
                 }
-                //ShareAndCopyComposable(viewModel = AdviceViewModel(), state = viewModel.data )
+                ShareAndCopyComposable( state = viewModel.data )
             }
         }
 
@@ -299,5 +299,5 @@ fun FavoriteButton(
             )
         }
 
-    }
+}
 

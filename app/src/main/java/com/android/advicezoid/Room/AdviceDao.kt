@@ -1,8 +1,7 @@
 package com.android.advicezoid.Room
 
 
-import androidx.compose.runtime.MutableState
-import androidx.lifecycle.LiveData
+
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -12,11 +11,12 @@ import com.android.advicezoid.model.Advices
 import com.android.advicezoid.model.Slip
 import com.android.advicezoid.repository.Slips
 import androidx.room.OnConflictStrategy.IGNORE
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface AdviceDao {
-    @Query("Select * FROM advices_table")  // selecting all inserted data in our table
-     fun getAll():kotlinx.coroutines.flow.Flow<Slips>
+    @Query("Select * FROM advices_table ORDER BY id ASC  ")  // selecting all inserted data in our table
+     fun getAll(): Flow<Slips>
 
     @Insert(onConflict = IGNORE)// inserting data in our table
      fun insert(advice: Slip)

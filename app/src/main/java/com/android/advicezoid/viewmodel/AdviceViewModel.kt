@@ -26,7 +26,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AdviceViewModel @Inject constructor(
-    private val repo: AdviceRepository
+     private val repo: AdviceRepository
 ) : ViewModel() {
     val TAG = "MainActivity"
     val data = mutableStateOf(Advices())
@@ -61,11 +61,12 @@ class AdviceViewModel @Inject constructor(
         }
     }
 
-    val advices = repo.getAdvicesFromRoom()
-
     fun addAdvice(advice: Slip) = viewModelScope.launch (Dispatchers.IO){
         repo.addAdviceToRoom(advice)
     }
+
+    val advices = repo.getAdvicesFromRoom()
+
 
 
 
