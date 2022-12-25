@@ -14,6 +14,5 @@ class AdviceRepositoryImpl (
     override fun addAdviceToRoom(advice: Slip) = adviceDao.insert(advice)
 
     override fun deleteAllAdvicesFromRoom() = adviceDao.deleteAll()
-
-
+    override fun deteleSpeficAdviceFromRoom(advice: Slip) = adviceDao.delete(advice)
 }

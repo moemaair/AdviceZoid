@@ -73,6 +73,10 @@ class AdviceViewModel @Inject constructor(
         repo.deleteAllAdvicesFromRoom()
     }
 
+    fun delete(advice: Slip) = viewModelScope.launch(Dispatchers.IO){
+        repo.deteleSpeficAdviceFromRoom(advice)
+    }
+
 
 
 

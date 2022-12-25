@@ -84,7 +84,7 @@ fun Fav(
                         .background(MaterialTheme.colors.primaryVariant)
                         .fillMaxSize(), horizontalArrangement = Arrangement.SpaceAround
                 ) {
-                    IconButton(onClick = { }) {
+                    IconButton(onClick = { navigator.navigate(HomeScreenDestination)}) {
                         Icon(imageVector = Icons.Default.Home, contentDescription = "home")
                     }
                     IconButton(onClick = { }) {

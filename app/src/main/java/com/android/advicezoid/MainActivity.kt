@@ -270,18 +270,7 @@ fun FavoriteButton(
                         }
                     },
                 tint = color,
-                )
-
-//            Icon(
-//                tint = color,
-//                modifier = modifier.graphicsLayer {
-//                        scaleX = 1.3f
-//                        scaleY = 1.3f
-//                    }.clickable(onClick = {
-//                        if (!isFavorite) takeAdvice(advice) else println("No data! sorry")
-//                    }),
-//                imageVector = if (!isFavorite) Icons.Default.FavoriteBorder else Icons.Filled.Favorite
-//            )
+            )
         }
 
 }
