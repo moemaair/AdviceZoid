@@ -37,6 +37,9 @@ class AdviceViewModel @Inject constructor(
     var advice by mutableStateOf(Slip(0,""))
         private set
 
+    var openDialog = mutableStateOf(false)
+
+
     fun gettingData(context: Context): Unit { // Model capturing calling API
         runBlocking {
             withContext(Dispatchers.IO) {

@@ -2,7 +2,6 @@ package com.android.advicezoid.components
 
 import LottieCat
 import android.annotation.SuppressLint
-import android.view.Window
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -17,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.advicezoid.destinations.HomeScreenDestination
+import com.android.advicezoid.model.Slip
 import com.android.advicezoid.viewmodel.AdviceViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -27,7 +27,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Composable
 fun Fav(
     navigator: DestinationsNavigator,
-    viewModel: AdviceViewModel = hiltViewModel(),
+    viewModel: AdviceViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
     val advices by viewModel.advices.collectAsState(
@@ -36,6 +36,7 @@ fun Fav(
     var selectedIndex by remember {
         mutableStateOf(0)
     }
+
 
     Scaffold(
         topBar = {
@@ -67,12 +68,19 @@ fun Fav(
         content = {
             if(advices.isNotEmpty()){
                 AdviceFavoriteCard(
-                    advices = advices
+                    advices = advices,
                 )
+                //now the opendialog is true
             }
             else {
                 LottieCat()
             }
+            DialogBoxForSavedAdvice(
+                deleteAdvice = {
+
+                }
+            )
+
         },
         bottomBar = {
             BottomNavigation(

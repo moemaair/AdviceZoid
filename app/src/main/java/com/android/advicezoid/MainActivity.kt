@@ -69,7 +69,11 @@ class MainActivity : ComponentActivity() {
 @RootNavGraph(start = true)
 @Destination
 @Composable
-fun HomeScreen( viewModel: AdviceViewModel = hiltViewModel(),navigator: DestinationsNavigator) {
+fun HomeScreen(
+    viewModel: AdviceViewModel = hiltViewModel(),
+    navigator: DestinationsNavigator
+)
+{
     val context = LocalContext.current
     gettingData = viewModel.gettingData(context)
     runBlocking {
