@@ -75,6 +75,7 @@ fun HomeScreen(
 )
 {
     val context = LocalContext.current
+    val scaffoldState = rememberScaffoldState()
     gettingData = viewModel.gettingData(context)
     runBlocking {
             launch {

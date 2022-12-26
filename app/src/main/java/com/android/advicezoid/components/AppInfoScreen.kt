@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.*
 import androidx.compose.material.R
 import androidx.compose.material.icons.Icons
@@ -47,35 +48,45 @@ fun AppInfoScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                Column() {
+                Column(modifier = Modifier.fillMaxWidth().padding(0.dp, 40.dp),
+                 horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center) {
                     Text(text = "Advicezoid",
-                        style = MaterialTheme.typography.h3,
+                        style = MaterialTheme.typography.h4,
                     )
                     Text(text = "Version 1.0.0",
                         style = MaterialTheme.typography.body1,
                     )
                 }
 
-                Column() {
+                Column(modifier = Modifier.fillMaxWidth().padding(0.dp, 40.dp),
+                 horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center) {
                     Text(text = "Developer",
-                        style = MaterialTheme.typography.h3,
+                        style = MaterialTheme.typography.h4,
                     )
                     Text(text = "Mohamed Ibrahim",
                         style = MaterialTheme.typography.body1,
                     )
                 }
 
-                Column() {
+                Column(modifier = Modifier.fillMaxWidth().padding(0.dp, 40.dp),
+                 horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center) {
                     Text(text = "Contact us",
                         style = MaterialTheme.typography.h3,
                     )
                     Text(text = "advicezoid@gmail.com",
-                        style = MaterialTheme.typography.body1,
+                        style = MaterialTheme.typography.body1
+
                     )
                 }
             }
 
 
+        },
+        bottomBar = {
+            BottomNav(navigator = navigator)
         }
 
     )

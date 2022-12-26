@@ -82,39 +82,12 @@ fun Fav(
                 LottieCat()
             }
             DialogBoxForSavedAdvice(
-                deleteAdvice = {
 
-                }
             )
 
         },
         bottomBar = {
-            BottomNavigation(
-                modifier = Modifier.fillMaxWidth(),
-                elevation = 0.dp
-            ) {
-                Row(
-                    modifier = Modifier
-                        .background(MaterialTheme.colors.primaryVariant)
-                        .fillMaxSize(), horizontalArrangement = Arrangement.SpaceAround
-                ) {
-                    IconButton(onClick = { navigator.navigate(HomeScreenDestination)}) {
-                        Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-                            Icon(imageVector = Icons.Default.Home, contentDescription = "home")
-                            Text(text = "Home", style = MaterialTheme.typography.subtitle1)
-                        }
-                    }
-                    IconButton(onClick = { navigator.navigate(SettingScreenDestination)}) {
-                        Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-                            Icon(imageVector = Icons.Default.Settings, contentDescription = "home")
-                            Text(text = "Setting", style = MaterialTheme.typography.subtitle1)
-                        }
-                    }
-
-
-                }
-
-            }
+            BottomNav(navigator = navigator)
         }
     )
 

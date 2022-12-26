@@ -4,6 +4,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.view.View
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -11,6 +12,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.Icon
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
@@ -23,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.advicezoid.model.Advices
 import com.android.advicezoid.viewmodel.AdviceViewModel
+import com.google.android.material.snackbar.Snackbar
 
 // used to copy quote to clipboard
 fun Context.copyAdvice(text: String) {
@@ -44,6 +48,7 @@ fun Context.shareToOthers(quote: String) {
 @Composable
 fun ShareAndCopyComposable(viewModel: AdviceViewModel = hiltViewModel(), state: MutableState<Advices>) {
     val context = LocalContext.current
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -68,11 +73,14 @@ fun ShareAndCopyComposable(viewModel: AdviceViewModel = hiltViewModel(), state: 
                 .fillMaxHeight()
                 .width(2.dp)
                 .background(Color.Gray))
+
+
             Image(painter = painterResource(id = R.drawable.ic_sharp_content_copy_24),
                 contentDescription ="copy button",
                 modifier = Modifier.clickable(onClick = {
-                    Toast.makeText(context, "Copied to Clipboard", Toast.LENGTH_SHORT).show()
-                       context.copyAdvice(state.value.slip?.advice.toString())
+                    context.copyAdvice(state.value.slip?.advice.toString())
+                    Toast.makeText(context, "Copied to Clipboard!", Toast.LENGTH_SHORT).show()
+
                 })
             )
 

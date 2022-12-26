@@ -19,7 +19,6 @@ import com.android.advicezoid.viewmodel.AdviceViewModel
 @Composable
 fun DialogBoxForSavedAdvice(
     viewModel: AdviceViewModel = hiltViewModel() ,
-    deleteAdvice : () -> Unit
 
 ) {
     if(viewModel.openDialog.value){
