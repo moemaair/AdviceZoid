@@ -14,8 +14,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.android.advicezoid.destinations.AppInfoScreenDestination
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+
+
 @Destination
 @Composable
 fun SettingScreen(
@@ -48,10 +51,10 @@ fun SettingScreen(
                    .background(Color.Transparent)
                    .padding(0.dp),
                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.Transparent),
-                   onClick = { },
+                   onClick = { navigator.navigate(AppInfoScreenDestination) },
                    ) {  // take me to app info screen
                         Row(modifier = Modifier.fillMaxWidth()) {
-                            IconButton(onClick = { /*TODO*/ }) {
+                            IconButton(onClick = { navigator.navigate(AppInfoScreenDestination) }) {
                                 Icon(
                                     imageVector = Icons.Default.Info,
                                     contentDescription = "info about app",
