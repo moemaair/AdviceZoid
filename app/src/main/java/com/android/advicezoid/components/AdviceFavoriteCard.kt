@@ -1,9 +1,7 @@
 package com.android.advicezoid.components
 
-import DeleteIcon
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
@@ -23,7 +21,6 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.advicezoid.repository.Slips
 import com.android.advicezoid.viewmodel.AdviceViewModel
-
 @Composable
 fun AdviceFavoriteCard(
     viewModel: AdviceViewModel = hiltViewModel(),
