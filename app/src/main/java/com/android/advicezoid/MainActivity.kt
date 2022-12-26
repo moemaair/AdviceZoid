@@ -124,8 +124,7 @@ fun HomeScreen(
                             text = "DAILY ADVICE",
                             modifier = Modifier,
                             color = Gray,
-                            style = MaterialTheme.typography.h4,
-                            fontSize = 14.sp,
+                            style = MaterialTheme.typography.body1,
 
                             )
                         Box(
@@ -138,8 +137,7 @@ fun HomeScreen(
                         Text(
                             text = "FAVORITES",
                             color = Black,
-                            style = MaterialTheme.typography.h4,
-                            fontSize = 14.sp,
+                            style = MaterialTheme.typography.body1,
                             modifier = Modifier.clickable(onClick = {
                                 // to favorite screen
                                 navigator.navigate(FavDestination)

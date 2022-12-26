@@ -3,6 +3,7 @@ package com.android.advicezoid.components
 import LottieCat
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -10,12 +11,14 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.advicezoid.destinations.HomeScreenDestination
+import com.android.advicezoid.destinations.SettingScreenDestination
 import com.android.advicezoid.model.Slip
 import com.android.advicezoid.viewmodel.AdviceViewModel
 import com.ramcosta.composedestinations.annotation.Destination
@@ -57,7 +60,10 @@ fun Fav(
                             contentDescription = "back home"
                         )
                     }
-                    Text(text = "Favorites" , fontSize = 16.sp, style = MaterialTheme.typography.h3)
+                    Text(text = "Favorites" , fontSize = 16.sp,
+                        style = MaterialTheme.typography.h3,
+                        color = if(isSystemInDarkTheme()) Color.Gray else  Color.Black
+                    )
 
                     // call our dropdown here
                     FavoriteScreenDropdownMenu()
@@ -93,10 +99,16 @@ fun Fav(
                         .fillMaxSize(), horizontalArrangement = Arrangement.SpaceAround
                 ) {
                     IconButton(onClick = { navigator.navigate(HomeScreenDestination)}) {
-                        Icon(imageVector = Icons.Default.Home, contentDescription = "home")
+                        Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+                            Icon(imageVector = Icons.Default.Home, contentDescription = "home")
+                            Text(text = "Home", style = MaterialTheme.typography.subtitle1)
+                        }
                     }
-                    IconButton(onClick = { }) {
-                        Icon(imageVector = Icons.Default.Settings, contentDescription = "home")
+                    IconButton(onClick = { navigator.navigate(SettingScreenDestination)}) {
+                        Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+                            Icon(imageVector = Icons.Default.Settings, contentDescription = "home")
+                            Text(text = "Setting", style = MaterialTheme.typography.subtitle1)
+                        }
                     }
 
 
