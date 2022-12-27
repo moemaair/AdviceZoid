@@ -18,10 +18,10 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.android.advicezoid.R
-import com.android.advicezoid.copyAdvice
 import com.android.advicezoid.repository.Slips
 import com.android.advicezoid.viewmodel.AdviceViewModel
+import com.app.android.advicezoid.R
+import com.app.android.advicezoid.copyAdvice
 
 @Composable
 fun AdviceFavoriteCard(

@@ -1,4 +1,4 @@
-package com.android.advicezoid
+package com.app.android.advicezoid
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

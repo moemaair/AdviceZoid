@@ -34,6 +34,8 @@ import com.android.advicezoid.destinations.FavDestination
 import com.android.advicezoid.model.Slip
 import com.android.advicezoid.ui.theme.AdvicezoidTheme
 import com.android.advicezoid.viewmodel.AdviceViewModel
+import com.app.android.advicezoid.R
+import com.app.android.advicezoid.ShareAndCopyComposable
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph

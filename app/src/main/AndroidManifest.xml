@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Advicezoid">
         <activity
-            android:name=".MainActivity"
+            android:name="com.android.advicezoid.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:textIsSelectable = "true"

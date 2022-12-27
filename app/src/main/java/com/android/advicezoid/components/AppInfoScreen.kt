@@ -89,7 +89,7 @@ fun AppInfoScreen(
                     Text(text = "Contact us",
                         style = MaterialTheme.typography.h3,
                     )
-                    Text(text = "com.app.android.advicezoid@gmail.com",
+                    Text(text = "advicezoid@gmail.com",
                         style = MaterialTheme.typography.body1,
                         color = Color.Gray
 

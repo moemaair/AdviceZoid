@@ -1,6 +1,6 @@
 package com.android.advicezoid.components
 
-import LottieCat
+
 import android.annotation.SuppressLint
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
@@ -16,6 +16,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.android.advicezoid.LottieCat
 import com.android.advicezoid.destinations.HomeScreenDestination
 import com.android.advicezoid.viewmodel.AdviceViewModel
 import com.ramcosta.composedestinations.annotation.Destination

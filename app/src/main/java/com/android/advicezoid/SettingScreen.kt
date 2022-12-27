@@ -15,6 +15,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.android.advicezoid.components.BottomNav
 import com.android.advicezoid.destinations.AppInfoScreenDestination
+import com.app.android.advicezoid.R
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
