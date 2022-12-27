@@ -156,8 +156,8 @@ fun SettingScreen(
                     ) {  // take me to app info screen
                         Row(modifier = Modifier.fillMaxWidth()) {
                             IconButton(onClick = { /*TODO*/ }) {
-                                Icon(imageVector = Icons.Default.Star,
-                                    contentDescription = "Rate Our App",
+                                Icon(imageVector = Icons.Default.Share,
+                                    contentDescription = "Share App",
                                     modifier = Modifier
                                         .graphicsLayer {
                                             scaleX = 1.6F
@@ -167,8 +167,8 @@ fun SettingScreen(
                                 )
                             }
                             Column() {
-                                Text(text = "Rate Our App", style = MaterialTheme.typography.h3)
-                                Text(text = "Leave a review if you loved Advicezoid",
+                                Text(text = "Share App", style = MaterialTheme.typography.h3)
+                                Text(text = "Help other people discover the app",
                                     style = MaterialTheme.typography.body1,
                                     color = Color.Gray
                                 )
