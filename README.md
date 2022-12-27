@@ -1,6 +1,6 @@
 #  Advicezoid App
 An Advice Application built to Demonstrate the use of Jetpack Compose for building declarative UI in
-Android and 100% in Kotlin.
+Android and 100% in Kotlin. 
 
 The final app looks like this:
 
@@ -9,16 +9,16 @@ The final app looks like this:
 ## Built With 🛠
 
 * Tech-stack
-  * [Kotlin](https://kotlinlang.org/) - a cross-platform, statically typed, general-purpose programming language with type inference.
-  * [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - perform background operations.
-  * [Flow](https://kotlinlang.org/docs/reference/coroutines/flow.html) - handle the stream of data asynchronously that executes sequentially.
-  * [Hilt - Dagger ](https://dagger.dev/hilt/) - a pragmatic lightweight dependency injection framework.
-  * [Jetpack](https://developer.android.com/jetpack)
-    * [Room](https://developer.android.com/topic/libraries/architecture/room) - a persistence library provides an abstraction layer over SQLite.
-    * [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - is an observable data holder.
-    * [Lifecycle](https://developer.android.com/topic/libraries/architecture/lifecycle) - perform action when lifecycle state changes.
-    * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - store and manage UI-related data in a lifecycle conscious way.
-
+    * [Kotlin](https://kotlinlang.org/) - a cross-platform, statically typed, general-purpose programming language with type inference.
+    * [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - perform background operations.
+    * [Flow](https://kotlinlang.org/docs/reference/coroutines/flow.html) - handle the stream of data asynchronously that executes sequentially.
+    * [Hilt - Dagger ](https://dagger.dev/hilt/) - a pragmatic lightweight dependency injection framework.
+    * [Jetpack](https://developer.android.com/jetpack)
+        * [Room](https://developer.android.com/topic/libraries/architecture/room) - a persistence library provides an abstraction layer over SQLite.
+        * [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - is an observable data holder.
+        * [Lifecycle](https://developer.android.com/topic/libraries/architecture/lifecycle) - perform action when lifecycle state changes.
+        * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - store and manage UI-related data in a lifecycle conscious way.
+    
 ## Architecture 🗼
 
 This app uses [***MVVM (Model View
@@ -30,14 +30,14 @@ View-Model)***](https://developer.android.com/jetpack/docs/guide#recommended-app
 
 Drop a mail to:- ibrahimohamed81@outlook.com
 
-## Credits
+## Credits 
 
 - Fonts are from [Google fonts](https://fonts.google.com/knowledge)
 - Compose Destination - raamcosta (https://github.com/raamcosta/compose-destinations)
 
 <br />
 
-## License
+## License 
 
 ```
 MIT License
