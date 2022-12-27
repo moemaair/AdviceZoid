@@ -1,6 +1,5 @@
 
 package com.android.advicezoid.components
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -8,13 +7,10 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.android.advicezoid.model.Slip
 import com.android.advicezoid.viewmodel.AdviceViewModel
-import com.ramcosta.composedestinations.annotation.Destination
 
 
 @Composable

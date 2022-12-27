@@ -5,9 +5,7 @@ package com.android.advicezoid.Room
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.android.advicezoid.model.Advices
 import com.android.advicezoid.model.Slip
 import com.android.advicezoid.repository.Slips
 import androidx.room.OnConflictStrategy.IGNORE

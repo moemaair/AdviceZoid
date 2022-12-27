@@ -1,17 +1,12 @@
 package com.android.advicezoid.ui.theme
 
-import android.graphics.Bitmap.Config
-import android.view.Window
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.Typography
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
-import androidx.core.os.ConfigurationCompat
 import com.android.advicezoid.R
 
 

@@ -20,11 +20,11 @@ kotlin {
     }
 }
 android {
-    namespace 'com.android.advicezoid'
+    namespace 'com.app.android.advicezoid'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.android.advicezoid"
+        applicationId "com.app.android.advicezoid"
         minSdk 21
         targetSdk 33
         versionCode 1

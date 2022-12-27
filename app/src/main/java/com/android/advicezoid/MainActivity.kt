@@ -1,8 +1,6 @@
 package com.android.advicezoid
 
 import android.os.Bundle
-import android.view.Window
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -31,9 +29,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.graphics.alpha
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.android.advicezoid.components.Fav
 import com.android.advicezoid.destinations.FavDestination
 import com.android.advicezoid.model.Slip
 import com.android.advicezoid.ui.theme.AdvicezoidTheme

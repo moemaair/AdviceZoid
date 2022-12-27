@@ -1,27 +1,16 @@
 package com.android.advicezoid.components
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.*
-import androidx.compose.material.R
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.sharp.Share
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.android.advicezoid.destinations.AppInfoScreenDestination
-import com.android.advicezoid.destinations.HomeScreenDestination
 import com.android.advicezoid.destinations.SettingScreenDestination
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -100,7 +89,7 @@ fun AppInfoScreen(
                     Text(text = "Contact us",
                         style = MaterialTheme.typography.h3,
                     )
-                    Text(text = "advicezoid@gmail.com",
+                    Text(text = "com.app.android.advicezoid@gmail.com",
                         style = MaterialTheme.typography.body1,
                         color = Color.Gray
 
