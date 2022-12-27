@@ -2,7 +2,11 @@
 An Advice Application built to Demonstrate the use of Jetpack Compose for building declarative UI in
 Android. *Made with love ❤️ by [Mohamed Ibrahim](https://github.com/moemaair)*
 
-***Try latest JetQuotes App apk from below 👇***
+The final app looks like this:
+
+<img src="screenshoots/final_gif_.gif"
+width="270"/> <img src="screenshoots/homescreen.png"/>
+width="270"/> <img src="screenshoots/favscreen.png"/>
 
 ## Built With 🛠
 
