@@ -4,7 +4,7 @@ Android. *Made with love ❤️ by [Mohamed Ibrahim](https://github.com/moemaair
 
 The final app looks like this:
 
-<img src="screenshoots/final_gif_.gif" width="270"/>  <img src="screenshoots/homescreen.png" width="270"/>  <img src="screenshoots/favscreen.png" width="270"/>  <img src="screenshoots/settingScreen.png" width="270"/>  <img src="screenshoots/aboutusScreen.png" width="270"/>   <img src="screenshoots/auto_dark_light_mode.gif" width="270"/> 
+<img src="screenshoots/final_gif_.gif" width="270"/>  <img src="screenshoots/homescreen.png" width="270"/>  <img src="screenshoots/favscreen.png" width="270"/>  <img src="screenshoots/settingScreen.png" width="270"/>  <img src="screenshoots/aboutusScreen.png" width="270"/>   <img src="screenshoots/auto_light_dark_mode.gif" width="270"/> 
 
 ## Built With 🛠
 
