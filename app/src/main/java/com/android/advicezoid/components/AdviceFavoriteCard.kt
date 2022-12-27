@@ -40,12 +40,11 @@ fun AdviceFavoriteCard(
                 .fillMaxWidth()
                 .height(100.dp)
                 .padding(10.dp, 0.dp)
-
             ){
                 Card(modifier = Modifier
                     .fillMaxSize()
                     .padding(5.dp)
-                    .shadow(3.dp)) {
+                ) {
                     Row(
                         modifier = Modifier.fillMaxSize(),
                         horizontalArrangement = Arrangement.SpaceBetween
