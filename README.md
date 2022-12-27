@@ -1,32 +1,23 @@
-# 🔖 AdviceZoid
+#  Advicezoid App
 An Advice Application built to Demonstrate the use of Jetpack Compose for building declarative UI in
-Android. *Made with love ❤️ by [Mohamed Ibrahim](https://github.com/moemaair)*
+Android and 100% in Kotlin.
 
 The final app looks like this:
 
-<img src="screenshoots/final_gif_.gif" width="270"/>  <img src="screenshoots/homescreen.png" width="270"/>  <img src="screenshoots/favscreen.png" width="270"/>  <img src="screenshoots/settingScreen.png" width="270"/>  <img src="screenshoots/aboutusScreen.png" width="270"/>   <img src="screenshoots/auto_light_dark_mode.gif" width="270"/> 
+<img src="screenshoots/final_gif_.gif" width="270"/>  <img src="screenshoots/homescreen.png" width="270"/>  <img src="screenshoots/favscreen.png" width="270"/>  <img src="screenshoots/settingScreen.png" width="270"/>  <img src="screenshoots/aboutusScreen.png" width="270"/>   <img src="screenshoots/auto_dark_light_mode.gif" width="270"/> 
 
 ## Built With 🛠
 
-- [Kotlin](https://kotlinlang.org/) - First class and official programming language for Android
-  development.
-- [Jetpack Compose](https://developer.android.com/jetpack/compose) - Jetpack Compose is Android’s
-  modern toolkit for building native UI.
-- [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - A coroutine is a
-  concurrency design pattern that you can use on Android to simplify code that executes
-  asynchronously.
-- [Android Architecture Components](https://developer.android.com/topic/libraries/architecture) -
-  Collection of libraries that help you design robust, testable, and maintainable apps.
-    - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores
-      UI-related data that isn"t destroyed on UI changes.
-    - [Jetpack Compose Navigation](https://developer.android.com/jetpack/compose/navigation) - The
-      Navigation component provides support for Jetpack Compose applications.
-- [Material Components for Android](https://github.com/material-components/material-components-android)
-    - Modular and customizable Material Design UI components for Android.
-- [Realm by MongoDB](https://realm.io/)
-    - Realm is a fast, scalable alternative to SQLite with mobile to cloud data sync that makes building real-time, reactive mobile apps easy.
-- [Figma](https://figma.com/) - Figma is a vector graphics editor and prototyping tool which is
-  primarily web-based.
+* Tech-stack
+  * [Kotlin](https://kotlinlang.org/) - a cross-platform, statically typed, general-purpose programming language with type inference.
+  * [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - perform background operations.
+  * [Flow](https://kotlinlang.org/docs/reference/coroutines/flow.html) - handle the stream of data asynchronously that executes sequentially.
+  * [Hilt - Dagger ](https://dagger.dev/hilt/) - a pragmatic lightweight dependency injection framework.
+  * [Jetpack](https://developer.android.com/jetpack)
+    * [Room](https://developer.android.com/topic/libraries/architecture/room) - a persistence library provides an abstraction layer over SQLite.
+    * [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - is an observable data holder.
+    * [Lifecycle](https://developer.android.com/topic/libraries/architecture/lifecycle) - perform action when lifecycle state changes.
+    * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - store and manage UI-related data in a lifecycle conscious way.
 
 ## Architecture 🗼
 
@@ -37,25 +28,16 @@ View-Model)***](https://developer.android.com/jetpack/docs/guide#recommended-app
 
 ## Contact 📩
 
-Have an project? DM us at 👇
-
 Drop a mail to:- ibrahimohamed81@outlook.com
 
-## Donation 💰
+## Credits
 
-If this project help you reduce time to develop, you can give me a cup of coffee :)
-
-<a href="https://www.buymeacoffee.com/mohamedIbrahim8" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
-
-<br>
-
-## Credits 🤗
-
-- 🤓 Fonts are from [Google fonts](https://fonts.google.com/knowledge)
+- Fonts are from [Google fonts](https://fonts.google.com/knowledge)
+- Compose Destination - raamcosta (https://github.com/raamcosta/compose-destinations)
 
 <br />
 
-## License 🔖
+## License
 
 ```
 MIT License
