@@ -8,6 +8,7 @@ import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.*
 import androidx.compose.material.R
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.sharp.Share
@@ -18,7 +19,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.android.advicezoid.destinations.AppInfoScreenDestination
+import com.android.advicezoid.destinations.HomeScreenDestination
+import com.android.advicezoid.destinations.SettingScreenDestination
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
@@ -31,24 +35,38 @@ fun AppInfoScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                modifier = Modifier.padding(15.dp, 0.dp),
                 backgroundColor = Color.Transparent,
-                elevation = 0.dp,
-            ) {
-                Text(text = "About Us",
-                    style = MaterialTheme.typography.h3,
-                    color = if(isSystemInDarkTheme()) Color.Gray else  Color.Black
+                elevation =0.dp,
 
-                )
+                ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    IconButton(onClick = { navigator.navigate(SettingScreenDestination)}) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "back home"
+                        )
+                    }
+                    Text(text = "About Us",
+                        style = MaterialTheme.typography.h3,
+                        color = if(isSystemInDarkTheme()) Color.Gray else  Color.Black
+
+                    )
+                    Spacer(modifier = Modifier.size(50.dp))
+                }
             }
         },
         content = {padding ->
             Column(
-                modifier = Modifier.fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+                modifier = Modifier.fillMaxSize().padding(0.dp, 40.dp)
             ) {
-                Column(modifier = Modifier.fillMaxWidth().padding(0.dp, 40.dp),
+                Column(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(0.dp, 30.dp),
                  horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center) {
                     Text(text = "Advicezoid",
@@ -56,10 +74,13 @@ fun AppInfoScreen(
                     )
                     Text(text = "Version 1.0.0",
                         style = MaterialTheme.typography.body1,
+                         color = Color.Gray
                     )
                 }
 
-                Column(modifier = Modifier.fillMaxWidth().padding(0.dp, 40.dp),
+                Column(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(0.dp, 30.dp),
                  horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center) {
                     Text(text = "Developer",
@@ -67,17 +88,21 @@ fun AppInfoScreen(
                     )
                     Text(text = "Mohamed Ibrahim",
                         style = MaterialTheme.typography.body1,
+                         color = Color.Gray
                     )
                 }
 
-                Column(modifier = Modifier.fillMaxWidth().padding(0.dp, 40.dp),
+                Column(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(0.dp, 30.dp),
                  horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center) {
                     Text(text = "Contact us",
                         style = MaterialTheme.typography.h3,
                     )
                     Text(text = "advicezoid@gmail.com",
-                        style = MaterialTheme.typography.body1
+                        style = MaterialTheme.typography.body1,
+                        color = Color.Gray
 
                     )
                 }

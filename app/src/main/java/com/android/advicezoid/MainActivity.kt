@@ -27,6 +27,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -125,7 +126,9 @@ fun HomeScreen(
                             text = "DAILY ADVICE",
                             modifier = Modifier,
                             color = Gray,
+                            fontSize = 15.sp,
                             style = MaterialTheme.typography.body1,
+                            fontWeight = FontWeight.Bold
 
                             )
                         Box(
@@ -139,6 +142,8 @@ fun HomeScreen(
                             text = "FAVORITES",
                             color = Black,
                             style = MaterialTheme.typography.body1,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 15.sp,
                             modifier = Modifier.clickable(onClick = {
                                 // to favorite screen
                                 navigator.navigate(FavDestination)
@@ -194,6 +199,7 @@ fun HomeScreen(
                                         text = viewModel.data.value.slip?.advice.toString(),
                                         color = Black,
                                         textAlign = TextAlign.Center,
+                                        fontSize = 20.sp,
                                         style = MaterialTheme.typography.body1
                                     )
                                 }
