@@ -1,4 +1,10 @@
 #  Advicezoid App
+<hr>
+<p align="center">
+  <a href="https://play.google.com/store/apps/details?id=com.app.android.advicezoid">
+    <img alt="Get it on Google Play" title="Google Play" src="http://i.imgur.com/mtGRPuM.png" width="150">
+  </a>
+</p>
 An Advice Application built to Demonstrate the use of Jetpack Compose for building declarative UI in
 Android and 100% in Kotlin. 
 
