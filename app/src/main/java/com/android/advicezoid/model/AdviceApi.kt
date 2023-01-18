@@ -1,11 +1,13 @@
 package com.android.advicezoid.model
 
+import kotlinx.coroutines.flow.StateFlow
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import java.util.concurrent.Flow
 
 interface AdviceApi {
     @GET("advice")

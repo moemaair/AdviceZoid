@@ -49,7 +49,7 @@ fun ShareAndCopyComposable(viewModel: AdviceViewModel = hiltViewModel(), state: 
             .fillMaxWidth()
             .padding(40.dp)
             .height(40.dp),
-        shape = RoundedCornerShape(20.dp),) {
+        shape = RoundedCornerShape(10.dp),) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()

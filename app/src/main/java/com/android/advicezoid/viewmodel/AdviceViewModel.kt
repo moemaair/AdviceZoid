@@ -16,6 +16,7 @@ import com.android.advicezoid.model.Slip
 import com.android.advicezoid.repository.AdviceRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.StateFlow
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -56,7 +57,7 @@ class AdviceViewModel @Inject constructor(
                             }
 
                             override fun onFailure(call: Call<Advices>, t: Throwable) {
-                                Toast.makeText(context, "Check on your Internet connection...", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "Check on your Internet Connection...", Toast.LENGTH_SHORT).show()
                             }
 
                         })
