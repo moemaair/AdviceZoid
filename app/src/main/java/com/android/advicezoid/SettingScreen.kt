@@ -151,7 +151,11 @@ fun SettingScreen(
                                         .padding(0.dp, 0.dp, 5.dp, 0.dp)
                                 )
                             }
-                            Column() {
+                            Column(modifier = Modifier.clickable(onClick = {
+                                val openAdvicezoidOnPlaystore = Intent(Intent.ACTION_VIEW)
+                                openAdvicezoidOnPlaystore.data = Uri.parse("https://play.google.com/store/apps/details?id=com.app.android.advicezoid")
+                                context.startActivity(openAdvicezoidOnPlaystore)
+                            })) {
                                 Text(text = "Rate Our App", style = MaterialTheme.typography.h3)
                                 Text(text = "Leave a review if you loved Advicezoid",
                                     style = MaterialTheme.typography.body1,
