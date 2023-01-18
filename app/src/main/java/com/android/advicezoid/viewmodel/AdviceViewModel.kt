@@ -1,6 +1,8 @@
 package com.android.advicezoid.viewmodel
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.widget.Toast
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -76,6 +78,7 @@ class AdviceViewModel @Inject constructor(
     fun delete(advice: Slip) = viewModelScope.launch(Dispatchers.IO){
         repo.deteleSpeficAdviceFromRoom(advice)
     }
+
 
 
 

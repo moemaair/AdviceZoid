@@ -1,6 +1,9 @@
 package com.android.advicezoid
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -11,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.android.advicezoid.components.BottomNav
@@ -25,6 +29,8 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 fun SettingScreen(
     navigator: DestinationsNavigator
 ) {
+
+    val context = LocalContext.current
 
     Scaffold(
         topBar = {
@@ -88,9 +94,15 @@ fun SettingScreen(
                         colors = ButtonDefaults.buttonColors(backgroundColor = Color.Transparent),
                         onClick = { },
                     ) {
-                        Row(modifier = Modifier.fillMaxWidth(),
+                        Row(modifier = Modifier.fillMaxSize().clickable(onClick = {
+                            val emailIntent = Intent(Intent.ACTION_SENDTO)
+                            emailIntent.data = Uri.parse("mailto:")
+                            emailIntent.putExtra(Intent.EXTRA_EMAIL, "advicezoid@gmail.com")
+                            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Reporting an Issue")
+                            context.startActivity(emailIntent)
+                        }),
                         ) {
-                            IconButton(onClick = { /*TODO*/ }) {
+                            IconButton(onClick = {}) {
                                 Icon(painter = painterResource(id = if(isSystemInDarkTheme()) R.drawable.bug_report_dark else R.drawable.bug_report_light),
                                     contentDescription = "Report A Trouble/Issue",
                                     modifier = Modifier
@@ -121,7 +133,13 @@ fun SettingScreen(
                         colors = ButtonDefaults.buttonColors(backgroundColor = Color.Transparent),
                         onClick = { },
                     ) {  // take me to app info screen
-                        Row(modifier = Modifier.fillMaxWidth()) {
+                        Row(modifier = Modifier.fillMaxWidth().clickable(onClick = {
+                            val emailIntent = Intent(Intent.ACTION_SENDTO)
+                            emailIntent.data = Uri.parse("mailto:")
+                            emailIntent.putExtra(Intent.EXTRA_EMAIL, "advicezoid@gmail.com")
+                            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Reporting an Issue")
+                            context.startActivity(emailIntent)
+                        })) {
                             IconButton(onClick = { /*TODO*/ }) {
                                 Icon(imageVector = Icons.Default.Star,
                                     contentDescription = "Rate Our App",
