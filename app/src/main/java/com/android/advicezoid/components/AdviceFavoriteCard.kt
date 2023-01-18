@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
@@ -33,16 +34,15 @@ fun AdviceFavoriteCard(
         items(
             items = advices
         ){ item ->  // one item of advice
-
-
             Box(modifier = Modifier
                 .fillMaxWidth()
                 .height(100.dp)
-                .padding(10.dp, 0.dp)
+                .padding(2.dp, 0.dp)
             ){
                 Card(modifier = Modifier
                     .fillMaxSize()
-                    .padding(5.dp)
+                    .padding(5.dp),
+                    shape = RoundedCornerShape(0.dp)
                 ) {
                     Row(
                         modifier = Modifier.fillMaxSize(),
@@ -54,7 +54,6 @@ fun AdviceFavoriteCard(
                                 .fillMaxWidth(0.9f) ,
                             textAlign = TextAlign.Start,
                             overflow = TextOverflow.Clip,
-
                         )
 
                         Column() {
@@ -98,7 +97,11 @@ fun AdviceFavoriteCard(
                                         .clickable(onClick = {
                                             context.copyAdvice(item.advice)
                                             Toast
-                                                .makeText(context, "saved Advice copied!", Toast.LENGTH_SHORT)
+                                                .makeText(
+                                                    context,
+                                                    "saved Advice copied!",
+                                                    Toast.LENGTH_SHORT
+                                                )
                                                 .show()
                                         }),
                                     tint = MaterialTheme.colors.primary,
@@ -110,8 +113,12 @@ fun AdviceFavoriteCard(
 
 
                 }
+                Divider()
 
             }
+        }
+        item { 
+            Spacer(modifier = Modifier.size(54.dp))
         }
     }
 

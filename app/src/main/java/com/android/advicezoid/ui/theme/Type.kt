@@ -36,7 +36,7 @@ val Typography = Typography(
     subtitle1 = TextStyle(
     fontFamily = font,
     fontWeight = FontWeight.Normal,
-    fontSize = 15.sp,
+    fontSize = 12.sp,
      textAlign = TextAlign.Center
     )
 
