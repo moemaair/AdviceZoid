@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import com.android.advicezoid.components.BottomNav
 import com.android.advicezoid.destinations.AppInfoScreenDestination
 import com.app.android.advicezoid.R
+import com.app.android.advicezoid.shareToOthers
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
@@ -175,7 +176,9 @@ fun SettingScreen(
                         colors = ButtonDefaults.buttonColors(backgroundColor = Color.Transparent),
                         onClick = { },
                     ) {  // take me to app info screen
-                        Row(modifier = Modifier.fillMaxWidth()) {
+                        Row(modifier = Modifier.fillMaxWidth().clickable {
+                            context.shareToOthers("https://play.google.com/store/apps/details?id=com.app.android.advicezoid")
+                        }) {
                             IconButton(onClick = { /*TODO*/ }) {
                                 Icon(imageVector = Icons.Default.Share,
                                     contentDescription = "Share App",
