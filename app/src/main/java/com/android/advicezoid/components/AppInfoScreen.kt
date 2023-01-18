@@ -61,7 +61,7 @@ fun AppInfoScreen(
                     Text(text = "Advicezoid",
                         style = MaterialTheme.typography.h4,
                     )
-                    Text(text = "Version 1.0.0",
+                    Text(text = "Version 1.1.0",
                         style = MaterialTheme.typography.body1,
                          color = Color.Gray
                     )
