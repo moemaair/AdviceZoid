@@ -1,5 +1,11 @@
+<p align="center">
+  <a href="#"><img alt="Android OS" src="https://img.shields.io/badge/OS-Android-3DDC84?style=flat-square&logo=android"></a> 
+  <a href="#"><img alt="Languages-Kotlin" src="https://flat.badgen.net/badge/Language/Kotlin?icon=https://raw.githubusercontent.com/binaryshrey/Awesome-Android-Open-Source-Projects/master/assets/Kotlin_Logo_icon_white.svg&color=f18e33"/></a>
+  <a href="#"><img alt="release" src="https://flat.badgen.net/github/release/babel/babel"></a>
+</p>
+
 #  Advicezoid App
-<hr>
+
 <p align="center">
   <a href="https://play.google.com/store/apps/details?id=com.app.android.advicezoid">
     <img alt="Get it on Google Play" title="Google Play" src="http://i.imgur.com/mtGRPuM.png" width="150">
